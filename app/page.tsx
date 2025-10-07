@@ -1,7 +1,7 @@
 export default function Page() {
-  return (
-    <h1 className="text-3xl font-bold text-text bg-primary">
-      Hello, Tailwind!
-    </h1>
-  );
+    return (
+        <h1 className="text-text bg-primary text-3xl font-bold">
+            Hello, Tailwind!
+        </h1>
+    );
 }
