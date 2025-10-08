@@ -7,15 +7,15 @@ export default function Menu() {
     const pathname = usePathname();
 
     return (
-        <ul className="flex gap-4">
+        <ul className="flex gap-4 divide-x">
             <li>
                 <Link
                     href="/blog"
-                    className={
+                    className={`px-4 ${
                         pathname === "/blog"
                             ? "text-accent font-bold underline"
                             : "text-text hover:text-accent"
-                    }
+                    }`}
                 >
                     Blog
                 </Link>
@@ -23,11 +23,11 @@ export default function Menu() {
             <li>
                 <Link
                     href="/shop"
-                    className={
-                        pathname === "/shop"
+                    className={`px-4 ${
+                        pathname === "/blog"
                             ? "text-accent font-bold underline"
                             : "text-text hover:text-accent"
-                    }
+                    }`}
                 >
                     Shop
                 </Link>

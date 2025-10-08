@@ -3,15 +3,17 @@
 import Image from "next/image";
 
 import icon from "../../public/icon.png";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Logo() {
+    const router = useRouter();
+
     const handleOnClick = () => {
-        <Link href="/"></Link>;
+        router.push("/");
     };
 
     return (
-        <button onClick={handleOnClick}>
+        <button className="cursor-pointer" onClick={handleOnClick}>
             <Image src={icon} alt="Logo" width={100} height={100} />
         </button>
     );
