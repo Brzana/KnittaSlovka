@@ -24,7 +24,7 @@ export default function Menu() {
                 <Link
                     href="/shop"
                     className={`px-4 ${
-                        pathname === "/blog"
+                        pathname === "/shop"
                             ? "text-accent font-bold underline"
                             : "text-text hover:text-accent"
                     }`}
