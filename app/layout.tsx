@@ -12,7 +12,13 @@ export default function RootLayout({
             <head></head>
             <body className="flex min-h-screen flex-col">
                 <Navigation />
-                <main className="flex-1">{children}</main>
+                <main className="flex flex-1 items-center justify-center">
+                    <div
+                        className="pointer-events-none absolute inset-0 bg-[url('/icon.png')] bg-contain bg-center bg-no-repeat opacity-10"
+                        aria-hidden="true"
+                    ></div>
+                    {children}
+                </main>
                 <Footer />
             </body>
         </html>

@@ -1,16 +1,16 @@
-import { Dancing_Script } from "next/font/google";
-
-const dancingScript = Dancing_Script({
-    subsets: ["latin"],
-    weight: ["400"], // or ["400", "700"] if you want bold available
-});
+import Button from "./Button";
 
 export default function HomePageText() {
     return (
-        <p
-            className={`${dancingScript.className} text-2xl text-[--color-text]`}
-        >
-            knitted with soul, wrapped in softness
-        </p>
+        <div className="relative flex h-full flex-1 flex-col items-center justify-center">
+            <p className="text-text dancer-font text-8xl">
+                knitted with soul,
+                <br />
+            </p>
+            <p className="text-text dancer-font pb-8 text-8xl">
+                wrapped in softness
+            </p>
+            <Button placeholder="Read the Blog" />
+        </div>
     );
 }

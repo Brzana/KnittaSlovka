@@ -20,3 +20,7 @@ body {
     --color-accent2: #ead8c0; /* light beige for hovers/cards */
     --color-text: #2e2218; /* dark cocoa for body text */
 }
+
+.dancer-font {
+    font-family: "Dancer", cursive;
+}

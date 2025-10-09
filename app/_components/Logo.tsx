@@ -14,7 +14,7 @@ export default function Logo() {
 
     return (
         <button className="cursor-pointer" onClick={handleOnClick}>
-            <Image src={icon} alt="Logo" width={100} height={100} />
+            <Image src={icon} alt="Logo" width={80} height={80} />
         </button>
     );
 }
