@@ -3,7 +3,7 @@ import Menu from "@/app/_components/Menu";
 
 export default function Navigation() {
     return (
-        <nav className="bg-background flex flex-row items-center justify-between p-4">
+        <nav className="bg-accent2 flex flex-row items-center justify-between p-4">
             <Logo />
             <Menu />
         </nav>
