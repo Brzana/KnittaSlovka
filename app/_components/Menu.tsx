@@ -11,7 +11,7 @@ export default function Menu() {
             <li>
                 <Link
                     href="/blog"
-                    className={`px-4 ${
+                    className={`pr-4 transition duration-300 ${
                         pathname === "/blog"
                             ? "text-accent font-bold underline"
                             : "text-text hover:text-accent"
@@ -23,7 +23,7 @@ export default function Menu() {
             <li>
                 <Link
                     href="/shop"
-                    className={`px-4 ${
+                    className={`pr-4 transition duration-300 ${
                         pathname === "/shop"
                             ? "text-accent font-bold underline"
                             : "text-text hover:text-accent"
@@ -35,11 +35,11 @@ export default function Menu() {
             <li>
                 <Link
                     href="/about"
-                    className={
+                    className={`pr-4 transition duration-300 ${
                         pathname === "/about"
                             ? "text-accent font-bold underline"
                             : "text-text hover:text-accent"
-                    }
+                    }`}
                 >
                     About
                 </Link>

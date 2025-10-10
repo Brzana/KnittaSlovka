@@ -8,18 +8,18 @@ export default function ContactForm() {
                 <input
                     type="text"
                     placeholder="Name"
-                    className="border-accent2 bg-accent2 text-text focus:outline-accent flex-1 rounded border px-4 py-2"
+                    className="border-accent2 text-text focus:ring-accent flex-1 rounded border bg-[#fdf6ee] px-4 py-2 transition duration-300 focus:ring-2 focus:outline-none"
                 />
                 <input
                     type="email"
                     placeholder="Email"
-                    className="border-accent2 bg-accent2 text-text focus:outline-accent flex-1 rounded border px-4 py-2"
+                    className="border-accent2 text-text focus:ring-accent flex-1 rounded border bg-[#fdf6ee] px-4 py-2 transition duration-300 focus:ring-2 focus:outline-none"
                 />
             </div>
             <textarea
                 placeholder="Message"
                 rows={4}
-                className="border-accent2 bg-accent2 text-text focus:outline-accent w-full resize-none rounded border px-4 py-2"
+                className="border-accent2 text-text focus:ring-accent w-full resize-none rounded border bg-[#fdf6ee] px-4 py-2 transition duration-300 focus:ring-2 focus:outline-none"
             />
         </form>
     );
