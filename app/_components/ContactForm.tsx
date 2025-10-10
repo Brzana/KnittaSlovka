@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ContactForm() {
     return (
-        <form className="bg-background w-full max-w-xl rounded-lg p-6">
+        <form className="w-full max-w-xl rounded-lg p-6">
             <h2 className="text-text mb-4 font-serif text-4xl">Contact Me</h2>
             <div className="mb-4 flex gap-4">
                 <input
