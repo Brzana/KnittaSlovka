@@ -5,6 +5,7 @@ import image from "../../public/Urszulka.jpg";
 import { Roboto } from "next/font/google";
 import IconCarousele from "./IconCarousele";
 import ContactForm from "./ContactForm";
+import SendButton from "./SendButton";
 
 const roboto = Roboto({
     subsets: ["latin"],
