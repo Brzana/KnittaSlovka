@@ -1,4 +1,4 @@
-import Button from "./Button";
+import BlogButton from "./BlogButton";
 
 export default function HomePageText() {
     return (
@@ -10,7 +10,7 @@ export default function HomePageText() {
             <p className="text-text dancer-font pb-8 text-8xl">
                 wrapped in softness
             </p>
-            <Button placeholder="Read the Blog" />
+            <BlogButton placeholder="Read the Blog" />
         </div>
     );
 }

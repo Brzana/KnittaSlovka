@@ -8,7 +8,7 @@ type ButtonProps = {
     color?: string; // Tailwind color class, e.g. "bg-accent"
 };
 
-export default function Button({
+export default function BlogButton({
     placeholder,
     color = "bg-accent",
 }: ButtonProps) {
