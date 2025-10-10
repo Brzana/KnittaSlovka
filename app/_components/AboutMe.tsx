@@ -3,6 +3,7 @@ import Image from "next/image";
 import image from "../../public/Urszulka.jpg";
 
 import { Roboto } from "next/font/google";
+import IconCarousele from "./IconCarousele";
 
 const roboto = Roboto({
     subsets: ["latin"],
@@ -12,7 +13,7 @@ const roboto = Roboto({
 export default function AboutMe() {
     return (
         <div
-            className={`z-10 flex flex-row items-center justify-center gap-24 ${roboto.className}`}
+            className={`flex flex-row items-center justify-center gap-24 ${roboto.className}`}
         >
             <Image src={image} alt="About Me" width={500} height={500} />
             <div className="flex flex-col py-4">
@@ -24,6 +25,7 @@ export default function AboutMe() {
                     favorite materials to work with are natural fibers like wool
                     and cotton, as they provide both warmth and breathability.
                 </p>
+                <IconCarousele />
             </div>
         </div>
     );
