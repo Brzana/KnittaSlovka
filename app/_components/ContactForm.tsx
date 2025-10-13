@@ -9,7 +9,7 @@ export default function ContactForm() {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
 
-    // I need to change it to use server action
+    // TODO: Change this to server action
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // Handle form submission logic here
