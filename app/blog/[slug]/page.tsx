@@ -5,6 +5,7 @@ import { blogPosts } from "@/app/_data/blogPosts";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
+//TODO make the markdown content render properly
 const markdown = `# The Calm Rhythm of Knitting 🧶
 
 Knitting isn’t just a craft — it’s a *mindful ritual*. Each loop of yarn is a small, meditative motion that connects us to generations of makers before us.
