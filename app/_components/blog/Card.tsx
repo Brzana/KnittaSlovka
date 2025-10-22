@@ -9,6 +9,8 @@ interface CardProps {
     alt?: string;
 }
 
+//TODO add hover animation to lift the card slightly
+
 export default function Card({
     image,
     title,

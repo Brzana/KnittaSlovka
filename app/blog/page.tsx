@@ -1,5 +1,6 @@
 import Card from "../_components/blog/Card";
 
+// TODO Implement blog posts fetching from a CMS or database
 const blogPosts = [
     {
         id: 1,
