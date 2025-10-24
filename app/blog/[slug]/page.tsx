@@ -16,7 +16,7 @@ Knitting isn’t just a craft — it’s a *mindful ritual*. Each loop of yarn i
 
 Knitting gives me space to slow down. In a world of endless notifications, it’s rare to find something that demands quiet focus — a place where *mistakes can be undone* and *progress is visible* stitch by stitch.
 
-Here are a few things
+Here are a few things:
 - The soft sound of needles clicking together  
 - The texture of natural fibers running through my fingers  
 - Watching a flat piece of fabric take shape into something wearable  
@@ -91,7 +91,9 @@ export default function Page({ params }: { params: { slug: string } }) {
             <h1 className="bold text-text text-4xl">{post.title}</h1>
             <h2 className="font-accent mt-8 text-2xl">{post.description}</h2>
             <article className="prose prose-lg dark:prose-invert mt-6 w-full max-w-3xl">
-                <Markdown remarkPlugins={[remarkGfm]}>{markdown}</Markdown>
+                <Markdown remarkPlugins={[remarkGfm]}>
+                    {markdown.trimStart()}
+                </Markdown>
             </article>
         </div>
     );
