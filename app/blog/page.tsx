@@ -19,7 +19,7 @@ const blogPosts = [
     },
     {
         id: 3,
-        image: "/Blog3.jpeg", // Using existing image as placeholder
+        image: "/Blog3.jpg", // Using existing image as placeholder
         title: "Chunky Knit Blanket Patterns",
         description:
             "Explore a collection of cozy chunky knit blanket patterns for your home.",
