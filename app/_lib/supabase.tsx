@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 
-//TODO: enable 2fa for the admin
+//TODO: figuere out how to authenticate user without authentication on the webpage
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
