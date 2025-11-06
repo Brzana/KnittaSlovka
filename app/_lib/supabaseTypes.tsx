@@ -3,10 +3,10 @@ export type BlogPost = {
     id: string;
     title: string;
     slug: string;
-    description: string | null;
-    content: string | null;
-    image_url: string | null;
-    image_alt: string | null;
+    description: string;
+    content: string;
+    image_url: string;
+    image_alt: string;
     published: boolean;
     featured: boolean;
     created_at: string;
