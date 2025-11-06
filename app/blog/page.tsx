@@ -1,6 +1,4 @@
-import Card from "../_components/blog/Card";
-
-import { blogPosts } from "../_data/blogPosts";
+import PostsList from "../_components/blog/PostsList";
 
 export default function Page() {
     return (
@@ -18,15 +16,7 @@ export default function Page() {
 
             {/* Cards Grid */}
             <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {blogPosts.map((post) => (
-                    <Card
-                        key={post.id}
-                        image={post.image}
-                        title={post.title}
-                        description={post.description}
-                        slug={post.slug}
-                    />
-                ))}
+                <PostsList />
             </div>
         </div>
     );
