@@ -35,6 +35,6 @@ export type ContactMessage = {
     name: string;
     email: string;
     message: string;
-    read: boolean;
-    created_at: string;
+    read: boolean | false;
+    created_at: Date | null;
 };

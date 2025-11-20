@@ -1,18 +1,41 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 
 import SendButton from "./SendButton";
+import { sendContactMessage } from "@/app/_actions/contactForm";
+
+import type { ContactMessage } from "../_lib/supabaseTypes";
 
 export default function ContactForm() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
+    const [status, setStatus] = useState<string | null>(null);
+    const [isPending, startTransition] = useTransition();
 
-    // TODO: Change this to server action
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Handle form submission logic here
+        const form = e.currentTarget;
+        const formData = new FormData(form);
+
+        startTransition(async () => {
+            setStatus(null);
+            try {
+                const result = await sendContactMessage(formData);
+                if ((result as any).error) {
+                    setStatus((result as any).error);
+                } else {
+                    setStatus((result as any).success ?? "Sent");
+                    // clear inputs on success
+                    setName("");
+                    setEmail("");
+                    setMessage("");
+                }
+            } catch (err) {
+                setStatus("Unexpected error");
+            }
+        });
     };
 
     return (
@@ -28,6 +51,7 @@ export default function ContactForm() {
                     </label>
                     <input
                         id="name"
+                        name="name"
                         type="text"
                         placeholder="Name"
                         value={name}
@@ -42,6 +66,7 @@ export default function ContactForm() {
                     </label>
                     <input
                         id="email"
+                        name="email"
                         type="email"
                         placeholder="Email"
                         value={email}
@@ -57,6 +82,7 @@ export default function ContactForm() {
                 </label>
                 <textarea
                     id="message"
+                    name="message"
                     placeholder="Message"
                     rows={4}
                     value={message}
@@ -66,8 +92,10 @@ export default function ContactForm() {
                 />
             </div>
 
+            {status && <div className="text-text mt-3 text-sm">{status}</div>}
+
             <div className="mt-4 flex justify-end">
-                <SendButton />
+                <SendButton disabled={isPending} />
             </div>
         </form>
     );
