@@ -1,5 +1,7 @@
 import PostsList from "../_components/blog/PostsList";
 
+// TODO: make the suspension work with loader
+
 export default function Page() {
     return (
         <div className="relative z-10 container mx-auto px-4 py-12">
