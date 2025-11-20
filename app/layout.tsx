@@ -26,6 +26,7 @@ export default function RootLayout({
             <body className={`flex min-h-screen flex-col font-sans`}>
                 <Navigation />
                 <main className="flex flex-1 items-center justify-center">
+                    {/* TODO: maybe make the background image absolute? */}
                     <div
                         className="pointer-events-none absolute inset-0 bg-[url('/icon.png')] bg-contain bg-center bg-no-repeat opacity-10"
                         aria-hidden="true"

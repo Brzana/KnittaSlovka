@@ -19,3 +19,14 @@ export default async function fetchBlogPosts(): Promise<BlogPost[]> {
     }
     return data;
 }
+
+export async function getPost(slug: string): Promise<BlogPost | null> {
+    const { data, error } = await supabase
+        .from("blog_posts")
+        .select("*")
+        .eq("slug", slug)
+        .single();
+
+    if (error || !data) return null;
+    return data;
+}
