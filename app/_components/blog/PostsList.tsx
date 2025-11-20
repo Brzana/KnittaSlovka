@@ -8,7 +8,7 @@ import fetchBlogPosts from "../../_lib/supabase";
 
 export default function PostsList() {
     const [posts, setPosts] = useState<BlogPost[]>([]);
-    const [loading, setLoading] = useState(true);
+    //const [loading, setLoading] = useState(true);
     const [error, setError] = useState<boolean>(false);
 
     useEffect(() => {
@@ -16,18 +16,18 @@ export default function PostsList() {
             try {
                 const posts = await fetchBlogPosts();
                 setPosts(posts);
-                setLoading(false);
+                // setLoading(false);
             } catch (error) {
                 setError(true);
-                setLoading(false);
+                // setLoading(false);
             }
         };
         fetchPosts();
     }, []);
 
-    if (loading) {
-        return <p>Loading posts...</p>;
-    }
+    // if (loading) {
+    //     return <p>Loading posts...</p>;
+    // }
 
     if (error) {
         return <p>Failed to load posts.</p>;
