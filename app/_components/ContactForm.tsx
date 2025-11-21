@@ -7,6 +7,8 @@ import { sendContactMessage } from "@/app/_actions/contactForm";
 
 import type { ContactMessage } from "../_lib/supabaseTypes";
 
+// TODO: sanitize inputs
+
 export default function ContactForm() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
