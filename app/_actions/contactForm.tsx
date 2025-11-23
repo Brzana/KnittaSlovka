@@ -1,22 +1,44 @@
 "use server";
 
 import { supabase } from "@/app/_lib/supabase";
+import { z } from "zod";
+
+const ContactFormSchema = z.object({
+    name: z.string().min(2, "Name must be at least 2 characters").trim(),
+    email: z.string().email("Please enter a valid email address").trim(),
+    message: z
+        .string()
+        .min(10, "Message must be at least 10 characters")
+        .max(1000, "Message cannot exceed 1000 characters")
+        .trim(),
+});
 
 export async function sendContactMessage(formData: FormData) {
-    const name = formData.get("name") as string;
-    const email = formData.get("email") as string;
-    const message = formData.get("message") as string;
+    const rawData = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        message: formData.get("message"),
+    };
 
-    if (!name || !email || !message) {
-        return { error: "All fields are required" };
+    const result = ContactFormSchema.safeParse(rawData);
+
+    if (!result.success) {
+        return { error: result.error.issues[0].message };
     }
 
-    const { error } = await supabase
-        .from("contact_messages")
-        .insert({ name, email, message, read: false, created_at: new Date() });
+    const { name, email, message } = result.data;
+
+    const { error } = await supabase.from("contact_messages").insert({
+        name,
+        email,
+        message,
+        read: false,
+        created_at: new Date().toISOString(),
+    });
 
     if (error) {
-        return { error: "Failed to send message" };
+        console.error("Supabase Error:", error);
+        return { error: "Failed to send message. Please try again later." };
     }
 
     return { success: "Message sent successfully!" };
