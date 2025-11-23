@@ -91,6 +91,8 @@ export default function ContactForm() {
                     onChange={(e) => setMessage(e.target.value)}
                     className="border-accent2 text-text focus:ring-accent w-full resize-none rounded border bg-[#fdf6ee] px-4 py-2 transition duration-300 focus:ring-2 focus:outline-none"
                     required
+                    minLength={10}
+                    maxLength={1000}
                 />
             </div>
 
