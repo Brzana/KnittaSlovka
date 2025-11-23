@@ -1,23 +1,14 @@
 import Image from "next/image";
 
 import image from "../../public/Urszulka.jpg";
-
-import { Roboto } from "next/font/google";
 import IconCarousele from "./IconCarousele";
 import ContactForm from "./ContactForm";
 
-const roboto = Roboto({
-    subsets: ["latin"],
-    weight: ["400", "700"],
-});
-
 export default function AboutMe() {
     return (
-        <div className="flex flex-col items-center justify-center px-4 py-8">
+        <div className="dancer-font flex flex-col items-center justify-center px-4 py-8">
             <div className="divide-accent2 flex w-full max-w-4xl flex-col items-center justify-center divide-y-2">
-                <div
-                    className={`flex flex-row items-center justify-center gap-24 py-8 ${roboto.className}`}
-                >
+                <div className="dancer-font flex flex-row items-center justify-center gap-24 py-8">
                     <Image
                         src={image}
                         alt="About Me"

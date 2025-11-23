@@ -1,11 +1,12 @@
 import { Facebook, Instagram, Linkedin } from "lucide-react";
+import SocialLinks from "../_data/SocialLinks.json";
 
 export default function IconCarousele() {
     return (
         <div>
             <div className="flex gap-8">
                 <a
-                    href="https://facebook.com"
+                    href={SocialLinks.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group"
@@ -16,7 +17,7 @@ export default function IconCarousele() {
                     />
                 </a>
                 <a
-                    href="https://instagram.com"
+                    href={SocialLinks.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group"
@@ -27,7 +28,7 @@ export default function IconCarousele() {
                     />
                 </a>
                 <a
-                    href="https://linkedin.com"
+                    href={SocialLinks.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group"
