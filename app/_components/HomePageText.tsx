@@ -1,4 +1,4 @@
-import BlogButton from "./BlogButton";
+import BlogButton from "./buttons/BlogButton";
 
 export default function HomePageText() {
     return (

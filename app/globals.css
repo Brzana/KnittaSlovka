@@ -34,6 +34,7 @@ body {
     --color-accent: #8e5f3c; /* warm clay for buttons/links */
     --color-accent2: #ead8c0; /* light beige for hovers/cards */
     --color-text: #2e2218; /* dark cocoa for body text */
+    --color-textmuted: #7a6a53; /* muted brown for less emphasis */
 }
 
 .dancer-font {
