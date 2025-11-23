@@ -1,36 +1,13 @@
-"use client";
-
 import BlogCard from "./PostsCard";
-
 import { BlogPost } from "../../_lib/supabaseTypes";
-import { useEffect, useState } from "react";
 import fetchBlogPosts from "../../_lib/supabase";
 
-export default function PostsList() {
-    const [posts, setPosts] = useState<BlogPost[]>([]);
-    //const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<boolean>(false);
+export default async function PostsList() {
+    // Fetch data directly on the server
+    const posts = await fetchBlogPosts();
 
-    useEffect(() => {
-        const fetchPosts = async () => {
-            try {
-                const posts = await fetchBlogPosts();
-                setPosts(posts);
-                // setLoading(false);
-            } catch (error) {
-                setError(true);
-                // setLoading(false);
-            }
-        };
-        fetchPosts();
-    }, []);
-
-    // if (loading) {
-    //     return <p>Loading posts...</p>;
-    // }
-
-    if (error) {
-        return <p>Failed to load posts.</p>;
+    if (!posts || posts.length === 0) {
+        return <p className="text-text text-center">No posts found.</p>;
     }
 
     return (
