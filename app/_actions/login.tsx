@@ -1,7 +1,6 @@
 "use server";
 
 import { createClient } from "../_utils/supabase/server";
-import { redirect } from "next/navigation";
 import { z } from "zod";
 import { headers } from "next/headers"; // Dodaj ten import
 
@@ -34,7 +33,6 @@ export async function login(
     const { error } = await supabase.auth.signInWithOtp({
         email: result.data.email,
         options: {
-            // Ważne: Przekierowanie do endpointu callback, który wymieni kod na sesję
             emailRedirectTo: `${origin}/auth/callback`,
         },
     });
@@ -43,12 +41,5 @@ export async function login(
         return { error: error.message };
     }
 
-    // Możesz przekierować na stronę z informacją "Sprawdź email"
-    // redirect("/check-email");
-    // lub zostać tu gdzie jesteś (co robi obecny kod, bo redirect("/dashboard") poniżej
-    // wykona się tylko w kodzie synchronicznym, a tu czekamy na maila).
-    // W Twoim obecnym kodzie redirect("/dashboard") jest mylący, bo użytkownik nie jest jeszcze zalogowany.
-
-    // Lepiej zwrócić sukces do UI:
-    return { user: true }; // Zwracamy stan sukcesu, UI może wyświetlić "Sprawdź skrzynkę"
+    return { user: true };
 }
