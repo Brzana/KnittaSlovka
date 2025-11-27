@@ -13,7 +13,14 @@ const ContactFormSchema = z.object({
         .trim(),
 });
 
-export async function sendContactMessage(formData: FormData) {
+// Add prevState as first parameter (you can ignore it if not needed)
+export async function sendContactMessage(
+    prevState:
+        | { error: string; success?: undefined }
+        | { success: string; error?: undefined }
+        | null,
+    formData: FormData,
+) {
     const rawData = {
         name: formData.get("name"),
         email: formData.get("email"),
