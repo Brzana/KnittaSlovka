@@ -1,13 +1,24 @@
 "use server";
 
 import { createClient } from "../_utils/supabase/server";
+import { redirect } from "next/navigation";
 import { z } from "zod";
 
 const LoginSchema = z.object({
     email: z.string().email("Please enter a valid email address").trim(),
 });
 
-export async function login(formData: FormData) {
+// Define a consistent state type
+type LoginState =
+    | { error: string; user?: undefined }
+    | { user: any; error?: undefined } // or whatever your user type is
+    | null;
+
+export async function login(
+    prevState: LoginState, // ← must match return type
+    formData: FormData,
+): Promise<LoginState> {
+    // ← must match prevState type
     const email = formData.get("email");
 
     const result = LoginSchema.safeParse({ email });
@@ -18,7 +29,7 @@ export async function login(formData: FormData) {
 
     const supabase = await createClient();
 
-    const { data, error } = await supabase.auth.signInWithOtp({
+    const { error } = await supabase.auth.signInWithOtp({
         email: result.data.email,
     });
 
@@ -26,5 +37,5 @@ export async function login(formData: FormData) {
         return { error: error.message };
     }
 
-    return { user: data?.user ?? null };
+    redirect("/dashboard");
 }

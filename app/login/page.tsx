@@ -1,11 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import { useActionState } from "react"; // or "react" in React 19+\
+import { login } from "../_actions/login";
 
 //import { login } from "../_actions/login";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
+
+    const [state, formAction] = useActionState(login, null);
 
     return (
         <main className="z-10 flex min-h-screen w-full items-start justify-center bg-transparent py-20">
@@ -15,7 +19,7 @@ export default function LoginPage() {
                         Enter Your Email
                     </h1>
 
-                    <form className="space-y-4" method="post">
+                    <form className="space-y-4" action={formAction}>
                         <div>
                             <label
                                 htmlFor="email"
@@ -41,6 +45,11 @@ export default function LoginPage() {
                         >
                             Sign In
                         </button>
+                        {state?.error && (
+                            <div className="mt-3 text-sm text-red-500">
+                                {state.error}
+                            </div>
+                        )}
                     </form>
                 </div>
             </section>
