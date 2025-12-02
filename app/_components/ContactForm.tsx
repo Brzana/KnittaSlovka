@@ -1,10 +1,12 @@
 "use client";
 
 import React from "react";
-import { useFormState } from "react-dom"; // or "react" in React 19+
+import { useFormState } from "react-dom";
 
 import SendButton from "./SendButton";
 import { sendContactMessage } from "../_actions/contactForm";
+
+// TODO: Add CAPTCHA verification to prevent spam submissions
 
 export default function ContactForm() {
     const [state, formAction] = useFormState(sendContactMessage, null);
