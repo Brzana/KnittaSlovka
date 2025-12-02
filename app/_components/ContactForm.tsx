@@ -6,7 +6,7 @@ import { useFormState } from "react-dom";
 import SendButton from "./SendButton";
 import { sendContactMessage } from "../_actions/contactForm";
 
-// TODO: Add CAPTCHA verification to prevent spam submissions
+// TODO: Add CAPTCHA verification to prevent spam submissions and rate limiting
 
 export default function ContactForm() {
     const [state, formAction] = useFormState(sendContactMessage, null);
