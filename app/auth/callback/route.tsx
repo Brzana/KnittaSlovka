@@ -2,6 +2,8 @@
 import { createClient } from "@/app/_utils/supabase/server";
 import { NextResponse } from "next/server";
 
+//TODO: secure from open redirect attacks
+
 export async function GET(request: Request) {
     const { searchParams, origin } = new URL(request.url);
     const code = searchParams.get("code");
