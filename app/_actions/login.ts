@@ -2,7 +2,7 @@
 
 import { createClient } from "../_utils/supabase/server";
 import { z } from "zod";
-import { headers } from "next/headers"; // Dodaj ten import
+import { headers } from "next/headers";
 
 const LoginSchema = z.object({
     email: z.string().email("Please enter a valid email address").trim(),
