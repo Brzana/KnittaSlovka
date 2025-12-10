@@ -1,5 +1,5 @@
 import { getMessageById } from "@/app/_actions/getMessages";
-import { MessageDetail } from "@/app/_components/dashboard/messages/MessageDetail";
+import { MessageDetail } from "@/app/_components/dashboard/messages/messageDetail/MessageDetail";
 import React from "react";
 
 export default async function MessagePage({
