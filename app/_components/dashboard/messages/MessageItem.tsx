@@ -1,3 +1,5 @@
+//TODO: add deleting button
+
 import React from "react";
 import { ContactMessage } from "@/app/_lib/supabaseTypes";
 import Link from "next/link";
