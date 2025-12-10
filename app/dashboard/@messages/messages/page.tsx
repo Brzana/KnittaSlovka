@@ -7,7 +7,6 @@ import { MessageList } from "@/app/_components/dashboard/messages/MessageList";
 
 export default async function MessagesPage() {
     const { data: messages, error } = await getMessages();
-    console.log(messages);
 
     if (error) {
         return (

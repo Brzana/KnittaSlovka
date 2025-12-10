@@ -20,3 +20,22 @@ export async function getMessages(): Promise<{
 
     return { data: data as ContactMessage[] };
 }
+
+export async function getMessageById(id: string): Promise<{
+    data?: ContactMessage;
+    error?: string;
+}> {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+        .from("contact_messages")
+        .select("*")
+        .eq("id", id)
+        .single();
+
+    if (error) {
+        console.error("Supabase Error fetching message:", error);
+        return { error: "Failed to fetch message" };
+    }
+
+    return { data: data as ContactMessage };
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import { ContactMessage } from "@/app/_lib/supabaseTypes";
+import Link from "next/link";
 
 interface MessageItemProps {
     message: ContactMessage;
@@ -18,7 +19,8 @@ export function MessageItem({ message }: MessageItemProps) {
         : "Unknown date";
 
     return (
-        <div
+        <Link
+            href={`/dashboard/messages/${message.id}`}
             className={`group hover:bg-accent2/30 relative flex cursor-pointer gap-4 p-4 transition-all ${
                 isUnread ? "bg-white/80" : "bg-transparent"
             }`}
@@ -63,6 +65,6 @@ export function MessageItem({ message }: MessageItemProps) {
                     {message.message}
                 </p>
             </div>
-        </div>
+        </Link>
     );
 }
