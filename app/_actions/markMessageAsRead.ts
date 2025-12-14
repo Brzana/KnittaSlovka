@@ -6,6 +6,16 @@ import { revalidatePath } from "next/cache";
 export async function markMessageAsRead(id: string) {
     const supabase = await createClient();
 
+    const {
+        data: { user },
+        error: authError,
+    } = await supabase.auth.getUser();
+    if (authError || !user) {
+        return {
+            error: "Unauthorized: You must be logged in to update posts.",
+        };
+    }
+
     const { error } = await supabase
         .from("contact_messages")
         .update({ read: true })

@@ -8,6 +8,17 @@ export async function getMessages(): Promise<{
     error?: string;
 }> {
     const supabase = await createClient();
+
+    const {
+        data: { user },
+        error: authError,
+    } = await supabase.auth.getUser();
+    if (authError || !user) {
+        return {
+            error: "Unauthorized: You must be logged in to update posts.",
+        };
+    }
+
     const { data, error } = await supabase
         .from("contact_messages")
         .select("*")
@@ -26,6 +37,17 @@ export async function getMessageById(id: string): Promise<{
     error?: string;
 }> {
     const supabase = await createClient();
+
+    const {
+        data: { user },
+        error: authError,
+    } = await supabase.auth.getUser();
+    if (authError || !user) {
+        return {
+            error: "Unauthorized: You must be logged in to see messages.",
+        };
+    }
+
     const { data, error } = await supabase
         .from("contact_messages")
         .select("*")

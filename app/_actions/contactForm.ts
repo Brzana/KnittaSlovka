@@ -39,7 +39,6 @@ export async function sendContactMessage(
         email,
         message,
         read: false,
-        created_at: new Date().toISOString(),
     });
 
     if (error) {
