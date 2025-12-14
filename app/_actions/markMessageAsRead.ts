@@ -12,7 +12,7 @@ export async function markMessageAsRead(id: string) {
     } = await supabase.auth.getUser();
     if (authError || !user) {
         return {
-            error: "Unauthorized: You must be logged in to update posts.",
+            error: "Unauthorized: You must be logged in to mark message as read.",
         };
     }
 

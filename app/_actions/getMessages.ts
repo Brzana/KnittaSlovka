@@ -15,7 +15,7 @@ export async function getMessages(): Promise<{
     } = await supabase.auth.getUser();
     if (authError || !user) {
         return {
-            error: "Unauthorized: You must be logged in to update posts.",
+            error: "Unauthorized: You must be logged in to see messages.",
         };
     }
 
@@ -44,7 +44,7 @@ export async function getMessageById(id: string): Promise<{
     } = await supabase.auth.getUser();
     if (authError || !user) {
         return {
-            error: "Unauthorized: You must be logged in to see messages.",
+            error: "Unauthorized: You must be logged in to see this message.",
         };
     }
 
