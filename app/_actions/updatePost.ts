@@ -1,7 +1,5 @@
 "use server";
 
-//TODO: pamietaj zeby uwzglednic <input type="hidden" name="id" value={post.id} /> w formularzu updatePost
-
 import { createClient } from "@/app/_utils/supabase/server";
 import { z } from "zod";
 import { revalidatePath } from "next/cache";

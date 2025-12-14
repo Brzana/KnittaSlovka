@@ -2,9 +2,11 @@
 
 import { BlogPost } from "@/app/_lib/supabaseTypes";
 import { deletePost } from "@/app/_actions/deletePost";
-import { Trash2, Edit, ExternalLink } from "lucide-react";
+import { togglePublish } from "@/app/_actions/togglePublish";
+import { Trash2, Edit, ExternalLink, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useTransition } from "react";
+import { useRouter } from "next/navigation";
 
 interface BlogListTableProps {
     posts: BlogPost[];
@@ -12,6 +14,7 @@ interface BlogListTableProps {
 
 export default function BlogListTable({ posts }: BlogListTableProps) {
     const [isPending, startTransition] = useTransition();
+    const router = useRouter();
 
     const handleDelete = async (slug: string) => {
         if (!confirm("Are you sure you want to delete this post?")) return;
@@ -24,12 +27,21 @@ export default function BlogListTable({ posts }: BlogListTableProps) {
         });
     };
 
+    const handleTogglePublish = (id: string, currentStatus: boolean) => {
+        startTransition(async () => {
+            const result = await togglePublish(id, currentStatus);
+            if (result.error) {
+                alert(result.error);
+            }
+        });
+    };
+
     if (posts.length === 0) {
         return (
-            <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-gray-300 py-16 text-center">
+            <div className="relative z-10 flex flex-col items-center justify-center rounded-lg border border-dashed border-gray-300 bg-white py-16 text-center">
                 <p className="mb-2 text-gray-500">No posts found.</p>
                 <p className="text-sm text-gray-400">
-                    Create your first blog post to get started!
+                    Try adjusting your search or create a new post.
                 </p>
             </div>
         );
@@ -37,7 +49,12 @@ export default function BlogListTable({ posts }: BlogListTableProps) {
 
     return (
         //TODO: make the table be over the background image
-        <div className="z-10 overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-sm">
+        <div className="relative z-10 overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-sm">
+            {isPending && (
+                <div className="absolute inset-0 z-20 flex items-center justify-center bg-white/50">
+                    <Loader2 className="animate-spin text-gray-500" />
+                </div>
+            )}
             <table className="min-w-full divide-y divide-gray-200 text-sm">
                 <thead className="bg-gray-50">
                     <tr>
@@ -73,15 +90,23 @@ export default function BlogListTable({ posts }: BlogListTableProps) {
                                 </span>
                             </td>
                             <td className="px-4 py-3">
-                                <span
-                                    className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                                <button
+                                    onClick={() =>
+                                        handleTogglePublish(
+                                            post.id,
+                                            post.published,
+                                        )
+                                    }
+                                    disabled={isPending}
+                                    title="Click to toggle status"
+                                    className={`inline-flex cursor-pointer items-center rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors hover:opacity-80 focus:ring-2 focus:ring-black focus:ring-offset-1 focus:outline-none ${
                                         post.published
                                             ? "bg-green-100 text-green-700"
                                             : "bg-yellow-100 text-yellow-800"
                                     }`}
                                 >
                                     {post.published ? "Published" : "Draft"}
-                                </span>
+                                </button>
                             </td>
                             <td className="px-4 py-3 text-gray-500">
                                 {new Date(post.created_at).toLocaleDateString()}
