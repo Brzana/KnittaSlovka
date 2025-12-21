@@ -2,12 +2,15 @@
 import { createClient } from "@/app/_utils/supabase/server";
 import { NextResponse } from "next/server";
 
-//TODO: secure from open redirect attacks
+function isValidRelativePath(path: string): boolean {
+    return path.startsWith("/") && !path.startsWith("//");
+}
 
 export async function GET(request: Request) {
     const { searchParams, origin } = new URL(request.url);
     const code = searchParams.get("code");
-    const next = searchParams.get("next") ?? "/dashboard";
+    const nextParam = searchParams.get("next") ?? "/dashboard";
+    const next = isValidRelativePath(nextParam) ? nextParam : "/login";
 
     if (code) {
         const supabase = await createClient();
