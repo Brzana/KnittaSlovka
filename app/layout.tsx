@@ -2,6 +2,7 @@ import "@/app/globals.css";
 import Navigation from "./_components/Navigation";
 import Footer from "./_components/Footer";
 import { Playfair_Display, Inter } from "next/font/google";
+import type { Metadata } from "next";
 
 const playfair = Playfair_Display({
     subsets: ["latin"],
@@ -14,6 +15,40 @@ const inter = Inter({
     variable: "--font-inter",
     display: "swap",
 });
+
+export const metadata: Metadata = {
+    title: {
+        default: "KnittaSlovka",
+        template: "%s | KnittaSlovka",
+    },
+    description:
+        "Welcome to KnittaSlovka - a blog about knitting and handmade crafts",
+    keywords: ["knitting", "handmade", "crafts", "blog"],
+    authors: [{ name: "KnittaSlovka" }],
+    creator: "KnittaSlovka",
+    metadataBase: new URL(
+        process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+    ),
+    openGraph: {
+        type: "website",
+        locale: "pl_PL",
+        url: "/",
+        siteName: "KnittaSlovka",
+        title: "KnittaSlovka",
+        description:
+            "Welcome to KnittaSlovka - a blog about knitting and handmade crafts",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "KnittaSlovka",
+        description:
+            "Welcome to KnittaSlovka - a blog about knitting and handmade crafts",
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
+};
 
 export default function RootLayout({
     children,

@@ -4,6 +4,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import type { Metadata } from "next";
 
 import { getPost } from "@/app/_lib/supabase";
 
@@ -13,7 +14,57 @@ export async function generateStaticParams() {
     return posts || [];
 }
 
-// 2. Fetch data for the specific page
+export async function generateMetadata({
+    params,
+}: {
+    params: { slug: string };
+}): Promise<Metadata> {
+    const { slug } = await params;
+    const post = await getPost(slug);
+
+    if (!post) {
+        return {
+            title: "Post Not Found",
+        };
+    }
+
+    const metadataBase = new URL(
+        process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+    );
+
+    return {
+        title: post.title,
+        description: post.description,
+        keywords: ["knitting", "handmade", "crafts", "blog", post.title],
+        authors: [{ name: "KnittaSlovka" }],
+        openGraph: {
+            title: post.title,
+            description: post.description,
+            type: "article",
+            locale: "pl_PL",
+            url: `/blog/${slug}`,
+            siteName: "KnittaSlovka",
+            publishedTime: post.published_at || post.created_at,
+            modifiedTime: post.updated_at,
+            images: post.image_url
+                ? [
+                      {
+                          url: post.image_url,
+                          alt: post.image_alt || post.title,
+                          width: 1200,
+                          height: 630,
+                      },
+                  ]
+                : [],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: post.title,
+            description: post.description,
+            images: post.image_url ? [post.image_url] : [],
+        },
+    };
+}
 
 export default async function Page({ params }: { params: { slug: string } }) {
     // Await params in Next.js 15

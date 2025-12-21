@@ -1,5 +1,4 @@
 import BlogCard from "./PostsCard";
-import { BlogPost } from "../../_lib/supabaseTypes";
 import fetchBlogPosts from "../../_lib/supabase";
 
 export default async function PostsList() {
